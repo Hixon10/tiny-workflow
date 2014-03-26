@@ -1,0 +1,27 @@
+﻿@model Bizagi.ViewModels.Balance.BalanceViewModel
+
+@{
+    ViewBag.Title = "Деньги компании";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestedMoney)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestedMoney)
+        </dd>
+
+    </dl>
+</div>
+@if (User.IsInRole("Accountant"))
+{
+    <p>
+        @Html.ActionLink("Пополнить баланс", "DepositMoney", new {/* id = Model.PrimaryKey */}) 
+    </p>
+}

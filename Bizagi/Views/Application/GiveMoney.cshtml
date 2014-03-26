@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Bizagi.ViewModels.Application.ApplicationViewModel>
+
+@{
+    ViewBag.Title = "Заявки для выплаты денег";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestedMoney)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationOwnerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductCategory)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestedMoney)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationOwnerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCategory)
+            </td>
+            <td class="form-td">
+                @using (Html.BeginForm("GiveMoneyForApplication", "Application", new { @id = item.Id }, FormMethod.Post, new { @class = "approve-form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true)
+
+                    <input type="submit" value="Выплатить" class="btn btn-link" />
+                }
+            </td>
+        </tr>
+    }
+
+</table>

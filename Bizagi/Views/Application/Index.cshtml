@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Bizagi.ViewModels.Application.ApplicationViewModel>
+
+@{
+    ViewBag.Title = "Все заявки";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (User.IsInRole("Employee")) 
+{
+    <p>
+        @Html.ActionLink("Создать новую заявку", "Create")
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestedMoney)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationOwnerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductCategory)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequestedMoney)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationOwnerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductCategory)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,40 @@
+﻿@model Bizagi.ViewModels.Settings.ChangeRolesPriorityViewModel
+
+@{
+    ViewBag.Title = "Изменение приоритетов ролей";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.AccountantPriority, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AccountantPriority, templateName: "Enum-radio")
+                @Html.ValidationMessageFor(model => model.AccountantPriority)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.DirectorPriority, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DirectorPriority, templateName: "Enum-radio")
+                @Html.ValidationMessageFor(model => model.DirectorPriority)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
